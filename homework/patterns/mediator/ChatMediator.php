@@ -2,33 +2,31 @@
 
 namespace mediator;
 
+use Components\Button;
 use Components\Component;
+use Components\Window;
 
 class ChatMediator implements Mediator
 {
-    private Component $button;
-    private Component $window;
+    private Button $button;
+    private Window $window;
 
-    public function __construct(Component $button, Component $window)
+    public function __construct(Button $button, Window $window)
     {
         $this->window = $window;
+        $this->window->setMediator($this);
         $this->button = $button;
+        $this->button->setMediator($this);
     }
 
     public function notify(string $event): string
     {
         if ($event == 'button1Click'){
-            $this->button->setColor('red');
-            $this->button->setText('Clicked');
-            $this->window->setText('You clicked button!');
             return $this->button->click();
         }
 
         if ($event == 'window1Click'){
-            $this->window->setText("Now it's not window but linux");
-            $this->window->setColor('Blue');
-            $this->button->setText('Now click on me!');
-            return $this->window->click();
+            return $this->window->change();
         }
     }
 }
