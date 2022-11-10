@@ -3,7 +3,6 @@
 namespace mediator;
 
 use Components\Button;
-use Components\Component;
 use Components\Window;
 
 class ChatMediator implements Mediator
