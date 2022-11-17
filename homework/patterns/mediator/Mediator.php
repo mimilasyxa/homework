@@ -1,8 +1,6 @@
 <?php
 
-namespace mediator;
-
 interface Mediator
 {
-    public function notify(string $event);
+    public function send(string $string, Colleague $colleague);
 }
